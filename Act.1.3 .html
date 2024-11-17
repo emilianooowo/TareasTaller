@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertir Calificaciones</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input {
+            margin: 5px 0;
+        }
+        button {
+            margin: 10px 0;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        #resultados {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Convertir Calificaciones</h1>
+    <p>Ingresa las calificaciones numéricas (0-100) para tres estudiantes:</p>
+    <form id="formulario">
+        <label for="calificacion1">Estudiante 1:</label>
+        <input type="number" id="calificacion1" min="0" max="100" required><br>
+        <label for="calificacion2">Estudiante 2:</label>
+        <input type="number" id="calificacion2" min="0" max="100" required><br>
+        <label for="calificacion3">Estudiante 3:</label>
+        <input type="number" id="calificacion3" min="0" max="100" required><br>
+        <button type="button" onclick="procesarCalificaciones()">Convertir</button>
+    </form>
+    <div id="resultados"></div>
+
+    <script>
+        function convertirCalificacion(calificacion) {
+            if (calificacion >= 90) {
+                return 'A';
+            } else if (calificacion >= 80) {
+                return 'B';
+            } else if (calificacion >= 70) {
+                return 'C';
+            } else if (calificacion >= 69) {
+                return 'D';
+            } else {
+                return 'F';
+            }
+        }
+
+        function procesarCalificaciones() {
+            const calificacion1 = parseInt(document.getElementById('calificacion1').value);
+            const calificacion2 = parseInt(document.getElementById('calificacion2').value);
+            const calificacion3 = parseInt(document.getElementById('calificacion3').value);
+
+            const calificacionesNumericas = [calificacion1, calificacion2, calificacion3];
+            const resultadosDiv = document.getElementById('resultados');
+            resultadosDiv.innerHTML = '';
+
+            calificacionesNumericas.forEach((calificacion, index) => {
+                const letra = convertirCalificacion(calificacion);
+                resultadosDiv.innerHTML += `<p>Estudiante ${index + 1}: Calificación numérica: ${calificacion}, Calificación en letra: ${letra}</p>`;
+            });
+        }
+    </script>
+</body>
+</html>
